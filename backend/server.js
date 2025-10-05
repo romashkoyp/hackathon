@@ -16,6 +16,15 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:5173'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // Initialize Google Generative AI
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY
