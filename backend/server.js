@@ -10,14 +10,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['http://localhost:5173'];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: [
+    'http://localhost:5173', // Vite's default port
+    'https://business-assessment-frontend.onrender.com' // Render frontend URL
+  ],
   credentials: true
 }));
+app.use(express.json());
 
 // Initialize Google Generative AI
 const ai = new GoogleGenAI({
