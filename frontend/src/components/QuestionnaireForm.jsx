@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import './QuestionnaireForm.css';
 import { submitQuestionnaireAssessment } from '../services/geminiService';
 import { ApiError } from '../config/api';
+import { ThreeDots } from 'react-loader-spinner'
 
 function QuestionnaireForm() {
   const [formData, setFormData] = useState({
@@ -57,8 +58,8 @@ function QuestionnaireForm() {
   const [error, setError] = useState(null);
 
   // Markdown content for header and sections
-  const headerTitle = "# Business Assessment **Powered by AI**";
-  const headerSubtitle = "Complete the form below to receive a **comprehensive assessment** of your business";
+  const headerTitle = "# Business Assessment Powered by AI";
+  const headerSubtitle = "Complete the form below to receive a comprehensive assessment of your business";
 
   // Section headings with markdown support
   const sectionHeadings = {
@@ -70,9 +71,9 @@ function QuestionnaireForm() {
 
   // Subsection headings with markdown support
   const subsectionHeadings = {
-    entrepreneur: "### A. The **Entrepreneur**",
+    entrepreneur: "### A. **The Entrepreneur**",
     businessOperations: "### B. **Business Operations**",
-    company: "### C. The **Company**",
+    company: "### C. **The Company**",
     futureProspects: "### D. **Future Prospects**"
   };
 
@@ -675,7 +676,10 @@ function QuestionnaireForm() {
           </div>
 
           <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? 'Processing Assessment...' : 'Submit for Assessment'}
+            {loading
+              ? <p style={{ display: 'flex', alignItems: 'center', gap: '10px', alignContent: 'center', justifyContent: 'center' }}>Processing<ThreeDots color="#fff" height={20} width={30} radius={5}/></p>
+              : 'Submit for Assessment'
+            }
           </button>
         </form>
 
