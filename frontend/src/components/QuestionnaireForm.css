@@ -37,6 +37,12 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 480px) {
+  .header {
+    padding: 120px 20px;
+  }
+}
+
 .header::before {
   content: '';
   position: absolute;
